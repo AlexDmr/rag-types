@@ -1,0 +1,41 @@
+{
+  "name": "@graphens/rag-types",
+  "version": "1.0.5",
+  "description": "TypeScript interface definitions and Zod validation schemas for RAG services",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "rag",
+    "typescript",
+    "zod",
+    "types",
+    "schemas"
+  ],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "zod": "^3.23.8 || ^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "zod": "^3.23.8 || ^4.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
