@@ -1,6 +1,6 @@
 {
-  "name": "@graphens/rag-types",
-  "version": "1.0.5",
+  "name": "@alexd2/rag-types",
+  "version": "1.0.6",
   "description": "",
   "type": "module",
   "main": "dist/index.js",

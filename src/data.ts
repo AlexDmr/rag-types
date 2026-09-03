@@ -40,15 +40,15 @@ export interface MarkdownMetadata extends Record<string, string> {
 }
 
 export interface ChunkResultat {
-  source: string;
-  titre: string;
-  pertinence: string;
-  texte: string;
-  ue_id: string;
-  sha: string;
-  course_title?: string;
-  nomAlgo?: string;
-  metadata?: Record<string, string>;
+  readonly source: string;
+  readonly titre: string;
+  readonly pertinence: string;
+  readonly texte: string;
+  readonly ue_id: string;
+  readonly sha: string;
+  readonly course_title?: string | undefined;
+  readonly nomAlgo?: string | undefined;
+  readonly metadata?: Record<string, string> | undefined;
 }
 
 
@@ -67,4 +67,12 @@ export interface DeltaResult {
   aAjouter: FileState[];
   aMettrAJour: FileState[];
   aSupprimer: FileState[];
+}
+
+export interface AskResponse {
+    readonly question: string;
+    readonly resultats: {
+        readonly resultatsVectoriel: readonly ChunkResultat[];
+        readonly resultatsBM25: readonly ChunkResultat[];
+    };
 }

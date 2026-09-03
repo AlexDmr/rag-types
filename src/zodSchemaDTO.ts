@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { AskResponse, ChunkResultat } from "./data.js";
 
 // ── Request ───────────────────────────────────────────────────────────
 export const AskRequestSchema = z.object({
@@ -10,27 +11,38 @@ export type AskRequest = z.infer<typeof AskRequestSchema>;
 
 // ── Response 200 ──────────────────────────────────────────────────────
 export const ChunkResultatSchema = z.object({
-  source:       z.string(),
-  titre:        z.string(),
-  pertinence:   z.string(),
-  texte:        z.string(),
-  ue_id:        z.string(),
-  sha:          z.string(),
+  source: z.string(),
+  titre: z.string(),
+  pertinence: z.string(),
+  texte: z.string(),
+  ue_id: z.string(),
+  sha: z.string(),
   course_title: z.string().optional(),
-  nomAlgo:      z.string().optional(),
-  metadata:     z.record(z.string(), z.string()).optional(),
-});
+  nomAlgo: z.string().optional(),
+  metadata: z.record(z.string(), z.string()).optional(),
+}).readonly();
+
+
+
+function _sameTypeChunkResultat(a: ChunkResultat, b: z.infer<typeof ChunkResultatSchema>): void {
+    a = b;
+    b = a;
+}
 
 // ── Response ───────────────────────────────────────────────────────────
 export const AskResponseSchema = z.object({
   question:  z.string(),
   resultats: z.object({
-    resultatsVectoriel: z.array(ChunkResultatSchema),
-    resultatsBM25:      z.array(ChunkResultatSchema),
-  }),
-});
+    resultatsVectoriel: z.array(ChunkResultatSchema).readonly(),
+    resultatsBM25:      z.array(ChunkResultatSchema).readonly(),
+  }).readonly(),
+}).readonly();
 
-export type AskResponse = z.infer<typeof AskResponseSchema>;
+
+function _sameTypeAskResponse(a: AskResponse, b: z.infer<typeof AskResponseSchema>): void {
+    a = b;
+    b = a;
+}
 
 // ── POST /:ueId/documents ─────────────────────────────────────
 export const AddDocumentRequestSchema = z.object({
