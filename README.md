@@ -97,6 +97,23 @@ Pour publier ce package sur le registre public NPM :
 
 ---
 
+## Droit de publication
+
+Utiliser un Granular Access Token
+
+Si tu publies depuis une CI/CD ou si tu ne veux pas saisir un code 2FA à chaque publication, crée un Granular Access Token avec :
+
+accès au package @alexd2/rag-types ;
+permission Read and write ;
+bypass 2FA activé.
+
+Ensuite, configure le token dans ton environnement npm plutôt que de mettre le token directement dans le dépôt.
+
+Par exemple, pour une publication locale :
+
+npm config set //registry.npmjs.org/:_authToken=TON_TOKEN
+npm publish
+
 ## 📄 Licence
 
 [ISC](LICENSE)
