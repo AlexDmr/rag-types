@@ -38,6 +38,10 @@ export interface MarkdownMetadata /*extends Record<string, string>*/ {
   readonly ue_id: string;
   readonly sha: string;
   readonly originalDocumentData: string;
+  readonly chunkNumber: number;
+  readonly bloc: number;
+  readonly section: number;
+  readonly page?: number | undefined;
 }
 
 export interface ChunkResultat {

@@ -1,6 +1,6 @@
 {
   "name": "@alexd2/rag-types",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "",
   "type": "module",
   "main": "dist/index.js",

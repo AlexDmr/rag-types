@@ -11,6 +11,10 @@ export const MarkdownMetadataSchema = z.object({
   ue_id: z.string(),
   sha: z.string(),
   originalDocumentData: z.string(),
+  chunkNumber: z.number(),
+  bloc: z.number(),
+  section: z.number(),
+  page: z.number().optional(),
 }); // .readonly();
 
 function _sameTypeMarkdownMetadata(a: MarkdownMetadata, b: z.infer<typeof MarkdownMetadataSchema>): void {
@@ -64,10 +68,10 @@ function _sameTypeAskResponse(a: AskResponse, b: z.infer<typeof AskResponseSchem
 // ── POST /:ueId/documents ─────────────────────────────────────
 export const AddDocumentRequestSchema = z.object({
   path:     z.string().min(1, "Le champ 'path' est requis"),
-  url:      z.string().url("Le champ 'url' doit être une URL valide").optional(),
+  url:      z.url("Le champ 'url' doit être une URL valide").optional(),
   content:  z.string().optional(),
   sha:      z.string().min(1, "Le champ 'sha' est requis"),
-  metadata: z.record(z.string(), z.string()).optional(),
+  metadata: MarkdownMetadataSchema,
 }).refine(data => data.url || data.content, {
   message: "Vous devez fournir soit 'url' soit 'content'",
   path: ["url", "content"]
