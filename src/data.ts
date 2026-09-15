@@ -31,12 +31,13 @@ export interface MarkdownDoc {
   metadata: MarkdownMetadata;
 }
 
-export interface MarkdownMetadata extends Record<string, string> {
-  course_title: string;
-  source: string;
-  titre: string;
-  ue_id: string;
-  sha: string;
+export interface MarkdownMetadata /*extends Record<string, string>*/ {
+  readonly course_title: string;
+  readonly source: string;
+  readonly titre: string;
+  readonly ue_id: string;
+  readonly sha: string;
+  readonly originalDocumentData: string;
 }
 
 export interface ChunkResultat {
@@ -46,9 +47,9 @@ export interface ChunkResultat {
   readonly texte: string;
   readonly ue_id: string;
   readonly sha: string;
-  readonly course_title?: string | undefined;
-  readonly nomAlgo?: string | undefined;
-  readonly metadata?: Record<string, string> | undefined;
+  readonly course_title: string;
+  readonly nomAlgo: string;
+  readonly metadata: MarkdownMetadata;
 }
 
 

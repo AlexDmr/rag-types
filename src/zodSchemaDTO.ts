@@ -1,5 +1,22 @@
 import { z } from "zod";
-import type { AskResponse, ChunkResultat } from "./data.js";
+import type { AskResponse, ChunkResultat, MarkdownMetadata } from "./data.js";
+
+/**
+ * MetaDataSchema
+ */
+export const MarkdownMetadataSchema = z.object({
+  course_title: z.string(),
+  source: z.string(),
+  titre: z.string(),
+  ue_id: z.string(),
+  sha: z.string(),
+  originalDocumentData: z.string(),
+}); // .readonly();
+
+function _sameTypeMarkdownMetadata(a: MarkdownMetadata, b: z.infer<typeof MarkdownMetadataSchema>): void {
+    a = b;
+    b = a;
+}
 
 // ── Request ───────────────────────────────────────────────────────────
 export const AskRequestSchema = z.object({
@@ -17,9 +34,9 @@ export const ChunkResultatSchema = z.object({
   texte: z.string(),
   ue_id: z.string(),
   sha: z.string(),
-  course_title: z.string().optional(),
-  nomAlgo: z.string().optional(),
-  metadata: z.record(z.string(), z.string()).optional(),
+  course_title: z.string(),
+  nomAlgo: z.string(),
+  metadata: MarkdownMetadataSchema, // z.record(z.string(), z.string()).optional(),
 }).readonly();
 
 
